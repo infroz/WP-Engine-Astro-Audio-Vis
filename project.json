@@ -1,0 +1,8 @@
+{
+  "title": "Astro",
+	"file" : "index.html",
+	"general" :
+	{
+    "supportsaudioprocessing": true
+	}
+}
