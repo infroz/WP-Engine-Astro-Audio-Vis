@@ -1,56 +1,96 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title>
+
+    </title>
     <style>
       html, body {
         margin: 0;
         padding: 0;
 
         overflow: hidden;
+
+        background-image:  url("336392.jpg");
       }
     </style>
     <script>
+      let d_audio_arr;
+
       window.addEventListener('load', _ => {
-        let audio = []
+        let audio = [];
 
         const bar =  {
           width: window.innerWidth / 128 - 8,
-          height: 100,
+          height: -400,
           padding: 8
-        }
+        };
 
-        const canvas = document.createElement('canvas')
-        const context = canvas.getContext('2d')
+        const canvas = document.createElement('canvas');
+        const context = canvas.getContext('2d');
 
-        canvas.width = window.innerWidth
-        canvas.height = window.innerHeight
+        canvas.style.opacity = 0.7;
 
-        document.body.appendChild(canvas)
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        document.body.appendChild(canvas);
 
         const listener = arr => {
-          audio = arr
-        }
+          audio = arr;
+        };
 
         const draw = _ => {
-          context.clearRect(0,0, window.innerWidth, innerHeight)
+          context.clearRect(0,0, window.innerWidth, innerHeight);
           for (const [i, part] of audio.entries()) {
-            const x = (i * bar.width) + ((i + 1) * bar.padding) - (bar.padding / 2)
+            const x = (i * bar.width) + ((i + 1) * bar.padding) - (bar.padding / 2);
 
-            const y = 4
+            const y = 1040;
 
-            context.fillRect(x,y,bar.width,bar.height * part)
+            context.fillRect(x,y,bar.width,bar.height * part);
+            context.fillStyle = "red";
+            context.fill();
           }
+
 
           requestAnimationFrame(draw);
         }
 
+        const draw_line = _ => {
+          context.clearRect(0,0, window.innerWidth, innerHeight);
+          document.getElementById('console').innerHTML = '';
+          let prev;
 
-        window.wallpaperRegisterAudioListener(listener)
+          for (const [i, part] of audio.entries()) {
+            const x = (i * bar.width) + ((i + 1) * bar.padding) - (bar.padding / 2);
+            const x_1 = ((i + 1) * bar.width) + ((i + 2) * bar.padding) - (bar.padding / 2);
 
-        draw()
+            const y = 1040;
+            context.strokeStyle = "red";
+            context.lineWidth = 2;
+            context.beginPath();
+            context.moveTo(x, prev);
+            prev = bar.height * part + 1040;
+            context.lineTo(x_1, bar.height * part + 1040);
+
+            //document.getElementById('console').innerHTML += ' -  ' + i + ': ' + '<span style="color:red">' + part * bar.height + '</span>';
+            context.lineTo(x,y);
+            context.stroke();
+          }
+
+
+          requestAnimationFrame(draw_line);
+        }
+
+
+        window.wallpaperRegisterAudioListener(listener);
+
+        d_audio_arr = audio;
+        draw_line();
       })
     </script>
   </head>
   <body>
+    <span id="console" style="color:white;"></span>
   </body>
 </html>

@@ -3,6 +3,18 @@
 	"file" : "index.html",
 	"general" :
 	{
-    "supportsaudioprocessing": true
+    "supportsaudioprocessing": true,
+    "properties":
+    {
+      "bars":
+      {
+        "label": "Amount",
+        "text": "Amount of Bars",
+        "type": "slider",
+        "value": 64,
+        "min": 8,
+        "max": 248
+      }
+    }
 	}
 }
