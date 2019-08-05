@@ -3,7 +3,6 @@
 	"file" : "index.html",
 	"general" :
 	{
-<<<<<<< HEAD
     "supportsaudioprocessing": true,
     "properties":
     {
@@ -17,8 +16,5 @@
         "max": 248
       }
     }
-=======
-    "supportsaudioprocessing": true
->>>>>>> 39c0cd41a989e3706569fdd2300058efb2a63f4f
 	}
 }

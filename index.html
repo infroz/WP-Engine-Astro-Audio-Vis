@@ -1,19 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
-<<<<<<< HEAD
     <title>
 
     </title>
-=======
->>>>>>> 39c0cd41a989e3706569fdd2300058efb2a63f4f
     <style>
       html, body {
         margin: 0;
         padding: 0;
 
         overflow: hidden;
-<<<<<<< HEAD
 
         background-image:  url("336392.jpg");
       }
@@ -91,56 +87,10 @@
 
         d_audio_arr = audio;
         draw_line();
-=======
-      }
-    </style>
-    <script>
-      window.addEventListener('load', _ => {
-        let audio = []
-
-        const bar =  {
-          width: window.innerWidth / 128 - 8,
-          height: 100,
-          padding: 8
-        }
-
-        const canvas = document.createElement('canvas')
-        const context = canvas.getContext('2d')
-
-        canvas.width = window.innerWidth
-        canvas.height = window.innerHeight
-
-        document.body.appendChild(canvas)
-
-        const listener = arr => {
-          audio = arr
-        }
-
-        const draw = _ => {
-          context.clearRect(0,0, window.innerWidth, innerHeight)
-          for (const [i, part] of audio.entries()) {
-            const x = (i * bar.width) + ((i + 1) * bar.padding) - (bar.padding / 2)
-
-            const y = 4
-
-            context.fillRect(x,y,bar.width,bar.height * part)
-          }
-
-          requestAnimationFrame(draw);
-        }
-
-
-        window.wallpaperRegisterAudioListener(listener)
-
-        draw()
->>>>>>> 39c0cd41a989e3706569fdd2300058efb2a63f4f
       })
     </script>
   </head>
   <body>
-<<<<<<< HEAD
     <span id="console" style="color:white;"></span>
-=======
->>>>>>> 39c0cd41a989e3706569fdd2300058efb2a63f4f
   </body>
 </html>
