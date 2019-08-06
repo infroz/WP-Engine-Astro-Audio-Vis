@@ -56,28 +56,62 @@
           requestAnimationFrame(draw);
         }
 
+        let ad = new Array();
+
+        for(var i = 0; i < 128; i++) {
+          ad[i] = 0;
+        }
+
         const draw_line = _ => {
           context.clearRect(0,0, window.innerWidth, innerHeight);
           document.getElementById('console').innerHTML = '';
           let prev;
+
 
           for (const [i, part] of audio.entries()) {
             const x = (i * bar.width) + ((i + 1) * bar.padding) - (bar.padding / 2);
             const x_1 = ((i + 1) * bar.width) + ((i + 2) * bar.padding) - (bar.padding / 2);
 
             const y = 1040;
+
+            if(part > ad[i]) {
+              ad[i] = part;
+            } else {
+              ad[i] *= 0.9;
+            }
+
+            /*let ctx = context;
+
+            ctx.lineWidth = 1;
+            ctx.strokeStyle = "green";
+
+            // Drawing Lines
+            ctx.beginPath();
+
+            // Sets origin
+            ctx.moveTo(x, y);
+            ctx.lineTo(x, bar.height * ad[i] + 1040);
+            //document.getElementById('console').innerHTML += ' -  ' + i + ': ' + '<span style="color:red">' + ad[i] + '</span>';
+
+
+            ctx.stroke();*/
+
+
+
+
             context.strokeStyle = "green";
             context.lineWidth = 2;
             context.beginPath();
             context.moveTo(x, prev);
-            prev = bar.height * part + 1040;
-            context.lineTo(x_1, bar.height * part + 1040);
+            prev = bar.height * ad[i] + 1040;
+            context.lineTo(x_1, bar.height * ad[i] + 1040);
+
 
             //document.getElementById('console').innerHTML += ' -  ' + i + ': ' + '<span style="color:red">' + part * bar.height + '</span>';
             context.lineTo(x,y);
+            context.fill();
             context.stroke();
           }
-
 
           requestAnimationFrame(draw_line);
         }
